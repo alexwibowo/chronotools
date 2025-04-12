@@ -1,9 +1,8 @@
 plugins {
     id 'java'
-    id 'maven-publish'
-    id 'signing'
     id 'net.researchgate.release' version '3.1.0'
     id "me.champeau.jmh" version "0.7.3"
+    id "com.vanniktech.maven.publish" version "0.31.0"
 }
 
 group = 'io.github.alexwibowo'
@@ -17,11 +16,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation "org.assertj:assertj-core:3.11.1"
 
-}
-
-java {
-    withSourcesJar()
-    withJavadocJar()
 }
 
 test {
@@ -53,54 +47,33 @@ release {
     }
 }
 
-publishing {
-    publications{
 
-        mavenJava(MavenPublication){
-//            groupId = ${project.group}
-//            artifactId = ${project.name}
-//            version = ${project.version}
-            from components.java
+mavenPublishing {
+    coordinates("io.github.alexwibowo", "chronotools", "1.2")
 
-            pom {
-//                name = '${project.name}'
-                url = 'https://github.com/alexwibowo/chronotools'
-                inceptionYear = '2025'
-
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'http://www.opensource.org/licenses/mit-license.php'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'alexwibowo'
-                        name = 'Alex Wibowo'
-                        email = 'alexwibowo@gmail.com'
-                    }
-                }
-                scm {
-                    connection='scm:git:git:github.com/alexwibowo/chronotools.git'
-                    developerConnection='scm:git:https://github.com/alexwibowo/chronotools.git'
-                    url='https://github.com/alexwibowo/chronotools'
-                }
+    pom {
+        name = "Chronotools"
+        description = "Java library for fast date and time calculations."
+        inceptionYear = "2025"
+        url = "https://github.com/alexwibowo/chronotools/"
+        licenses {
+            license {
+                name = "MIT License"
+                url = "http://opensource.org/licenses/MIT"
+                distribution = "http://opensource.org/licenses/MIT"
             }
         }
-    }
-
-    repositories {
-        maven {
-            name = "OSSRH"
-            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            credentials {
-                username = project.findProperty("ossrhUsername") ?: ""
-                password = project.findProperty("ossrhPassword") ?: ""
+        developers {
+            developer {
+                id = "AlexWibowo"
+                name = "Alex Wibowo"
+                url = "https://github.com/alexwibowo/"
             }
         }
+        scm {
+            url = "https://github.com/alexwibowo/chronotools/"
+            connection = "scm:git:git://github.com/alexwibowo/chronotools.git"
+            developerConnection = "scm:git:ssh://git@github.com/alexwibowo/chronotools.git"
+        }
     }
-}
-
-signing {
-    sign publishing.publications.mavenJava
 }
