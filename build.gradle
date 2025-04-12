@@ -49,7 +49,7 @@ release {
 
 
 mavenPublishing {
-    coordinates("io.github.alexwibowo", "chronotools", "1.2")
+    coordinates("io.github.alexwibowo", "chronotools", "1.3")
 
     pom {
         name = "Chronotools"
