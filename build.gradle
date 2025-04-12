@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'maven-publish'
+    id 'signing'
     id 'net.researchgate.release' version '3.1.0'
     id "me.champeau.jmh" version "0.7.3"
 }
@@ -15,6 +17,11 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation "org.assertj:assertj-core:3.11.1"
 
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 test {
@@ -44,4 +51,56 @@ release {
     git {
         requireBranch.set('main')
     }
+}
+
+publishing {
+    publications{
+
+        mavenJava(MavenPublication){
+//            groupId = ${project.group}
+//            artifactId = ${project.name}
+//            version = ${project.version}
+            from components.java
+
+            pom {
+//                name = '${project.name}'
+                url = 'https://github.com/alexwibowo/chronotools'
+                inceptionYear = '2025'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'alexwibowo'
+                        name = 'Alex Wibowo'
+                        email = 'alexwibowo@gmail.com'
+                    }
+                }
+                scm {
+                    connection='scm:git:git:github.com/alexwibowo/chronotools.git'
+                    developerConnection='scm:git:https://github.com/alexwibowo/chronotools.git'
+                    url='https://github.com/alexwibowo/chronotools'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = project.findProperty("ossrhUsername") ?: ""
+                password = project.findProperty("ossrhPassword") ?: ""
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
