@@ -1,4 +1,4 @@
-package org.isolution.chronotools;
+package io.github.alexwibowo.chronotools;
 
 import java.util.concurrent.TimeUnit;
 

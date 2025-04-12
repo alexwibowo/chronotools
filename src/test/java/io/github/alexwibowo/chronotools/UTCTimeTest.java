@@ -1,4 +1,4 @@
-package org.isolution.chronotools;
+package io.github.alexwibowo.chronotools;
 
 import org.bw.ByteWatcher;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.isolution.chronotools.UTCTime.*;
+import static io.github.alexwibowo.chronotools.UTCTime.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UTCTimeTest {

@@ -4,7 +4,7 @@ plugins {
     id "me.champeau.jmh" version "0.7.3"
 }
 
-group = 'org.isolution'
+group = 'io.github.alexwibowo'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -23,7 +23,7 @@ test {
 }
 
 jmh {
-    warmupIterations = 2
+    warmupIterations = 5
     iterations = 5
     fork = 1
 }
