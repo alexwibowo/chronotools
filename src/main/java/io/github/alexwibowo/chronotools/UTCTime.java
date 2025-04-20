@@ -13,14 +13,41 @@ public final class UTCTime {
      * Assumes date string is in the format 'yyyyMMdd-HH:mm:ss.SSS'
      */
     public static long getEpochNanosFromCompactFormat(final String utcDateTimeString) {
-        final short year = Short.parseShort(utcDateTimeString.substring(0, 4));
-        final byte month = Byte.parseByte(utcDateTimeString.substring(4, 6)); // 1-based
-        final byte day = Byte.parseByte(utcDateTimeString.substring(6, 8));
-        final byte hour = Byte.parseByte(utcDateTimeString.substring(9, 11));
-        final byte minute = Byte.parseByte(utcDateTimeString.substring(12, 14));
-        final byte second = Byte.parseByte(utcDateTimeString.substring(15, 17));
-        final short millis = Short.parseShort(utcDateTimeString.substring(18, 21));
+        final short year = (short) extractNumber(utcDateTimeString, 0, 4);
+        final byte month = (byte) extractNumber(utcDateTimeString, 4, 6); // 1-based
+        final byte day = (byte) extractNumber(utcDateTimeString, 6, 8);
+        final byte hour = (byte)extractNumber(utcDateTimeString, 9, 11);
+        final byte minute = (byte)extractNumber(utcDateTimeString, 12, 14);
+        final byte second = (byte)extractNumber(utcDateTimeString, 15, 17);
+        final short millis = (short) extractNumber(utcDateTimeString, 18, 21);
         return computeEpochMillis(year, month, day, hour, minute, second, millis);
+    }
+
+    private static int extractNumber(final CharSequence input,
+                                     final int start,
+                                     final int end) {
+        if (input == null || start < 0 || end > input.length() || start >= end) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        int result = 0;
+        boolean negative = false;
+
+        int i = start;
+        if (input.charAt(i) == '-') {
+            negative = true;
+            i++;
+        }
+
+        for (; i < end; i++) {
+            char c = input.charAt(i);
+            if (c < '0' || c > '9') {
+                throw new IllegalArgumentException("Invalid digit: " + c);
+            }
+            result = result * 10 + (c - '0');
+        }
+
+        return negative ? -result : result;
     }
 
     /**
@@ -42,11 +69,11 @@ public final class UTCTime {
         long totalSeconds = TimeUnit.MILLISECONDS.toSeconds(epochMillis);
         long millis = epochMillis % 1000;
 
-        long days = totalSeconds / 86400;
-        long remainingSeconds = totalSeconds % 86400;
+        long days = totalSeconds / 86_400;
+        long remainingSeconds = totalSeconds % 86_400;
 
-        int hour = (int) (remainingSeconds / 3600);
-        remainingSeconds %= 3600;
+        int hour = (int) (remainingSeconds / 3_600);
+        remainingSeconds %= 3_600;
         int minute = (int) (remainingSeconds / 60);
         int second = (int) (remainingSeconds % 60);
 
