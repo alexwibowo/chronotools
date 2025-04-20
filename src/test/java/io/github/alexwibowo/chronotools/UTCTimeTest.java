@@ -159,7 +159,7 @@ public class UTCTimeTest {
     @Test
     void epochNanos_emptyDateTimeString_throwsException() {
         String dateTimeString = "";
-        assertThrows(StringIndexOutOfBoundsException.class, () -> getEpochNanosFromISOFormat(dateTimeString));
+        assertThrows(IllegalArgumentException.class, () -> getEpochNanosFromISOFormat(dateTimeString));
     }
 
     @Test

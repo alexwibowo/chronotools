@@ -42,7 +42,7 @@ public final class UTCTime {
         for (; i < end; i++) {
             char c = input.charAt(i);
             if (c < '0' || c > '9') {
-                throw new IllegalArgumentException("Invalid digit: " + c);
+                throw new NumberFormatException("Invalid digit: " + c);
             }
             result = result * 10 + (c - '0');
         }
@@ -54,13 +54,13 @@ public final class UTCTime {
      * Assumes date string is in the format {@link java.time.format.DateTimeFormatter#ISO_LOCAL_DATE_TIME}
      */
     public static long getEpochNanosFromISOFormat(final String utcDateTimeString) {
-        final short year = Short.parseShort(utcDateTimeString.substring(0, 4));
-        final byte month = Byte.parseByte(utcDateTimeString.substring(5, 7)); // 1-based
-        final byte day = Byte.parseByte(utcDateTimeString.substring(8, 10));
-        final byte hour = Byte.parseByte(utcDateTimeString.substring(11, 13));
-        final byte minute = Byte.parseByte(utcDateTimeString.substring(14, 16));
-        final byte second = Byte.parseByte(utcDateTimeString.substring(17, 19));
-        final short millis = Short.parseShort(utcDateTimeString.substring(20, 23));
+        final short year = (short) extractNumber(utcDateTimeString, 0, 4);
+        final byte month = (byte) extractNumber(utcDateTimeString,5, 7); // 1-based
+        final byte day = (byte) extractNumber(utcDateTimeString,8, 10);
+        final byte hour = (byte)extractNumber(utcDateTimeString,11, 13);
+        final byte minute = (byte)extractNumber(utcDateTimeString,14, 16);
+        final byte second = (byte)extractNumber(utcDateTimeString,17, 19);
+        final short millis = (short) extractNumber(utcDateTimeString,20, 23);
         return computeEpochMillis(year, month, day, hour, minute, second, millis);
     }
 
