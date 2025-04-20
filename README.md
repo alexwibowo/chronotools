@@ -25,22 +25,22 @@ Here is a JMH test comparison of the performance of ChronoTools vs Java Date and
 
 # Run progress: 50.00% complete, ETA 00:01:40
 # Fork: 1 of 1
-# Warmup Iteration   1: 3715.772 ops/ms
-# Warmup Iteration   2: 3782.352 ops/ms
-# Warmup Iteration   3: 3719.773 ops/ms
-# Warmup Iteration   4: 3732.944 ops/ms
-# Warmup Iteration   5: 3766.126 ops/ms
-Iteration   1: 3704.710 ops/ms[2m 31s]
-Iteration   2: 3732.308 ops/ms[2m 41s]
-Iteration   3: 3757.198 ops/ms[2m 51s]
-Iteration   4: 3769.365 ops/ms[3m 1s]
-Iteration   5: 3752.061 ops/ms[3m 11s]
+# Warmup Iteration   1: 4034.922 ops/ms
+# Warmup Iteration   2: 4010.390 ops/ms
+# Warmup Iteration   3: 4004.818 ops/ms
+# Warmup Iteration   4: 4006.061 ops/ms
+# Warmup Iteration   5: 3999.892 ops/ms
+Iteration   1: 3994.122 ops/ms[2m 31s]
+Iteration   2: 4003.357 ops/ms[2m 41s]
+Iteration   3: 4008.009 ops/ms[2m 51s]
+Iteration   4: 4006.652 ops/ms[3m 1s]
+Iteration   5: 4004.807 ops/ms[3m 11s]
 
 
 Result "io.github.alexwibowo.chronotools.UTCTimeJmhTest.jdk_benchmark":
-  3743.129 ±(99.9%) 97.399 ops/ms [Average]
-  (min, avg, max) = (3704.710, 3743.129, 3769.365), stdev = 25.294
-  CI (99.9%): [3645.730, 3840.527] (assumes normal distribution)
+  4003.390 ±(99.9%) 21.081 ops/ms [Average]
+  (min, avg, max) = (3994.122, 4003.390, 4008.009), stdev = 5.475
+  CI (99.9%): [3982.309, 4024.470] (assumes normal distribution)
 ```
 
 ## Using ChronoTools
@@ -55,20 +55,20 @@ Result "io.github.alexwibowo.chronotools.UTCTimeJmhTest.jdk_benchmark":
 
 # Run progress: 0.00% complete, ETA 00:03:20
 # Fork: 1 of 1
-# Warmup Iteration   1: 18650.618 ops/ms
-# Warmup Iteration   2: 18867.112 ops/ms
-# Warmup Iteration   3: 19287.294 ops/ms
-# Warmup Iteration   4: 19131.448 ops/ms
-# Warmup Iteration   5: 19165.050 ops/ms
-Iteration   1: 18666.409 ops/ms51s]
-Iteration   2: 18212.425 ops/ms1m 1s]
-Iteration   3: 19302.991 ops/ms1m 11s]
-Iteration   4: 19223.356 ops/ms1m 21s]
-Iteration   5: 19096.801 ops/ms1m 31s]
+# Warmup Iteration   1: 31998.031 ops/ms
+# Warmup Iteration   2: 27321.759 ops/ms
+# Warmup Iteration   3: 27299.161 ops/ms
+# Warmup Iteration   4: 27310.512 ops/ms
+# Warmup Iteration   5: 27314.632 ops/ms
+Iteration   1: 27341.579 ops/ms51s]
+Iteration   2: 27314.717 ops/ms1m 1s]
+Iteration   3: 27324.069 ops/ms1m 11s]
+Iteration   4: 27297.717 ops/ms1m 21s]
+Iteration   5: 27353.011 ops/ms1m 31s]
 
 
 Result "io.github.alexwibowo.chronotools.UTCTimeJmhTest.chronotools_benchmark":
-  18900.396 ±(99.9%) 1757.235 ops/ms [Average]
-  (min, avg, max) = (18212.425, 18900.396, 19302.991), stdev = 456.348
-  CI (99.9%): [17143.162, 20657.631] (assumes normal distribution)
+  27326.219 ±(99.9%) 83.989 ops/ms [Average]
+  (min, avg, max) = (27297.717, 27326.219, 27353.011), stdev = 21.812
+  CI (99.9%): [27242.229, 27410.208] (assumes normal distribution).
 ```
